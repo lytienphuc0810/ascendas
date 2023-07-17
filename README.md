@@ -1,37 +1,32 @@
-# Ascenda
+# HOW TO RUN
 
-Welcome to your new Hanami project!
+	docker build -t my-ruby-app .
 
-## Setup
+	docker run --mount type=bind,source=<your-absolute-path-to-this-repo>,target=/usr/src/app -it --entrypoint /bin/bash -p 2300:2300 my-ruby-app
 
-How to run tests:
+	bundle
 
-```
-% bundle exec rake
-```
+	bundle exec hanami server --host=0.0.0.0
 
-How to run the development console:
+# Sample request
+	http://localhost:2300/hotels
+	http://localhost:2300/hotels?hotels[]=SjyX
+	http://localhost:2300/hotels?hotels[]=SjyX&hotels[]=f8c9
+	http://localhost:2300/hotels?destination=5432
 
-```
-% bundle exec hanami console
-```
+# Decisions on data cleaning & selecting the best data
 
-How to run the development server:
+	1. Priorities data that matches the sample response
+	2. If different data exists in the same fields among suppliers, priorities in order of given suppliers list
+	3. If duplication exists in the same fields among suppliers, proceed to remove duplicated data
+	4. Strip left and right white space, lowcase all tag like data, remove falsy empty string lng/lat
 
-```
-% bundle exec hanami server
-```
+# Solutions design
 
-How to prepare (create and migrate) DB for `development` and `test` environments:
+	1. Using hanami as I think you guys at Ascenda are working with it
+	2. Using Entities for modeling the response
+	3. Can use faraday cache for caching request to data suppliers
 
-```
-% bundle exec hanami db prepare
+# Test specifications
 
-% HANAMI_ENV=test bundle exec hanami db prepare
-```
-
-Explore Hanami [guides](http://hanamirb.org/guides/), [API docs](http://docs.hanamirb.org/1.3.0/), or jump in [chat](http://chat.hanamirb.org) for help. Enjoy! 🌸
-
-
-
-bundle exec hanami server --host=0.0.0.0
+	1. I dont have time for this, please give the consideration of a small take home task within 5 ~ 6 hours

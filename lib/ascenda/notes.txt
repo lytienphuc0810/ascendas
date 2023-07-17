@@ -1,2 +1,0 @@
-merge criterias (duplication prevention & missing data & valid data or not)
-coding/http clients/http parameter & merge logic
