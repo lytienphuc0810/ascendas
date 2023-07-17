@@ -1,0 +1,3 @@
+project=ascenda
+test=rspec
+template=erb
