@@ -23,6 +23,7 @@ module Web
       load_paths << %w[
         controllers
         views
+        services
       ]
 
       # Handle exceptions with HTTP statuses (true) or don't catch them (false).

@@ -9,6 +9,8 @@ gem 'rake'
 gem 'faraday'
 gem 'sqlite3'
 
+gem 'rubocop', require: false
+
 group :development do
   # Code reloading
   # See: http://hanamirb.org/guides/projects/code-reloading

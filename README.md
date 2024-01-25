@@ -2,7 +2,7 @@
 
 	docker build -t my-ruby-app .
 
-	docker run --mount type=bind,source=<your-absolute-path-to-this-repo>,target=/usr/src/app -it --entrypoint /bin/bash -p 2300:2300 my-ruby-app
+	docker run --mount type=bind,source=$PWD,target=/usr/src/app -it --entrypoint /bin/bash -p 2300:2300 my-ruby-app
 
 	bundle
 
