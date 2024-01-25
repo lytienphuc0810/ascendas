@@ -91,7 +91,7 @@ RSpec.describe Web::Services::Hotels do
   end
 
   describe 'list' do
-    it 'run' do
+    it 'returns a list of hotels with passed filters' do
       result = service.list(['iJhz'], nil)
       expect(result).to eq(hotels)
     end
@@ -108,7 +108,14 @@ RSpec.describe Web::Services::Hotels do
   end
 
   describe 'nilify' do
-    it 'run' do
+    it 'returns nil in case of blank' do
+      result = service.send(:nilify, '');
+      expect(result).to eq(nil)
+    end
+
+    it 'returns original value in case of non-blank' do
+      result = service.send(:nilify, '121');
+      expect(result).to eq('121')
     end
   end
 
