@@ -6,6 +6,10 @@ module Web
       class Index
         include Web::Action
 
+        def initialize(hotels_service: Web::Services::Hotels.new)
+          @hotels_service = hotels_service
+        end
+
         params do
           optional(:hotels).filled(:array?)
           optional(:destination).filled(:str?)
@@ -17,7 +21,7 @@ module Web
             return
           end
 
-          hotels = Web::Services::Hotels.new.get(params[:hotels], params[:destination])
+          hotels = @hotels_service.get(params[:hotels], params[:destination])
 
           self.body = {
             hotels: hotels.map { |h| Hanami::Utils::Hash.deep_serialize(h) }
