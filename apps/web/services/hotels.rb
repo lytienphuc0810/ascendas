@@ -32,7 +32,7 @@ module Web
           source2 = sources2.find { |o| o['hotel_id'] == hotel_id }
           source3 = sources3.find { |o| o['id'] == hotel_id }
 
-          aggreate_hotel_sources(source1, source2, source3)
+          aggregate_hotel_sources(source1, source2, source3)
         end.compact
       end
 
@@ -46,8 +46,9 @@ module Web
       end
 
       def get_sanitized_amenities(source1, source2, source3)
-        general = ((source1&.dig('Facilities') || []) + (source2&.dig('amenities', 'general') || []) + (source3&.dig('amenities') || [])).map(&:downcase).map(&:strip).uniq
-        room = (source2&.dig('amenities', 'room') || []).map(&:downcase).map(&:strip).uniq
+        general = [source1&.dig('Facilities'), source2&.dig('amenities', 'general'),
+                   source3&.dig('amenities')].flatten.compact.map(&:downcase).map(&:strip).uniq
+        room = [source2&.dig('amenities', 'room')].flatten.compact.map(&:downcase).map(&:strip).uniq
         general = general.reject { |w| room.include? w }
 
         Entities::Amenity.new(
@@ -57,24 +58,24 @@ module Web
       end
 
       def get_sanitized_images(source2, source3)
-        rooms = (source2&.dig('images', 'rooms') || []).map { |o|
+        rooms = [source2&.dig('images', 'rooms')].flatten.compact.map { |o|
           Entities::Image.new(
             link: o['link'],
             description: o['caption']
           )
-        } + (source3&.dig('images', 'rooms') || []).map do |o|
+        } + [source3&.dig('images', 'rooms')].flatten.compact.map do |o|
               Entities::Image.new(
                 link: o['url'],
                 description: o['description']
               )
             end
-        site = (source2&.dig('images', 'site') || []).map do |o|
+        site = [source2&.dig('images', 'site')].flatten.compact.map do |o|
           Entities::Image.new(
             link: o['link'],
             description: o['caption']
           )
         end
-        amenities = (source3&.dig('images', 'amenities') || []).map do |o|
+        amenities = [source3&.dig('images', 'amenities')].flatten.compact.map do |o|
           Entities::Image.new(
             link: o['url'],
             description: o['description']
@@ -88,7 +89,7 @@ module Web
         )
       end
 
-      def aggreate_hotel_sources(source1, source2, source3)
+      def aggregate_hotel_sources(source1, source2, source3)
         Entities::Hotel.new(
           id: get_sanitized_value(source1&.dig('Id'), source2&.dig('hotel_id'), source3&.dig('id')),
           destination_id: get_sanitized_value(source1&.dig('DestinationId'), source2&.dig('destination_id'),
@@ -106,7 +107,7 @@ module Web
                                            source3&.dig('info')),
           amenities: get_sanitized_amenities(source1, source2, source3),
           images: get_sanitized_images(source2, source3),
-          booking_conditions: source2&.dig('booking_conditions')
+          booking_conditions: [source2&.dig('booking_conditions')].flatten.compact
         )
       end
     end
