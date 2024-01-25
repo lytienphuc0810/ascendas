@@ -325,5 +325,14 @@ module Web
         subresource_integrity :sha256
       end
     end
+    
+    if ENV['HANAMI_ENV'] == 'test'
+      require 'simplecov'
+      SimpleCov.start do
+        enable_coverage :branch
+        primary_coverage :branch
+      end
+      SimpleCov.coverage_dir '.coverage'
+    end
   end
 end
