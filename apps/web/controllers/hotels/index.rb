@@ -21,7 +21,7 @@ module Web
             return
           end
 
-          hotels = @hotels_service.get(params[:hotels], params[:destination])
+          hotels = @hotels_service.list(params[:hotels], params[:destination])
 
           self.body = {
             hotels: hotels.map { |h| Hanami::Utils::Hash.deep_serialize(h) }

@@ -15,7 +15,7 @@ RSpec.describe Web::Controllers::Hotels::Index do
   let(:hotels) { [hotel] }
 
   before do 
-    allow(hotels_service).to receive(:get).and_return(hotels)
+    allow(hotels_service).to receive(:list).and_return(hotels)
   end
 
 
@@ -25,7 +25,7 @@ RSpec.describe Web::Controllers::Hotels::Index do
   end
 
   it "returns 200 status in case of valid params and invokes correct service" do
-    expect(hotels_service).to receive(:get).with('usRW', 123).once
+    expect(hotels_service).to receive(:list).with('usRW', 123).once
     response = action.call(params)
     expect(response[0]).to be(200)
   end

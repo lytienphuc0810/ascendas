@@ -3,7 +3,7 @@
 module Web
   module Services
     class Hotels
-      def get(hotels, destination)
+      def list(hotels, destination)
         Hanami.logger.debug(hotels)
         Hanami.logger.debug(destination)
 
@@ -11,7 +11,7 @@ module Web
         @body2 = JSON.parse(Faraday.get(ENV['URL_SOURCE_2']).body)
         @body3 = JSON.parse(Faraday.get(ENV['URL_SOURCE_3']).body)
 
-        get_hotels(hotels, destination).map { |h| Hanami::Utils::Hash.deep_serialize(h) }
+        build_hotels(hotels, destination).map { |h| Hanami::Utils::Hash.deep_serialize(h) }
       end
 
       private
@@ -20,7 +20,7 @@ module Web
         (filter_hotel_ids.nil? or filter_hotel_ids.include? hotel_id) and (filter_destination_id.nil? or destination_id == filter_destination_id.to_i)
       end
 
-      def get_hotels(hotel_ids = [], destination)
+      def build_hotels(hotel_ids = [], destination)
         sources1 = @body1.select { |o| filter_hotel(o['Id'], o['DestinationId'], hotel_ids, destination) }
         sources2 = @body2.select { |o| filter_hotel(o['hotel_id'], o['destination_id'], hotel_ids, destination) }
         sources3 = @body3.select { |o| filter_hotel(o['id'], o['destination'], hotel_ids, destination) }
