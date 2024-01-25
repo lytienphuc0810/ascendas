@@ -325,7 +325,7 @@ module Web
         subresource_integrity :sha256
       end
     end
-    
+
     if ENV['HANAMI_ENV'] == 'test'
       require 'simplecov'
       SimpleCov.start do

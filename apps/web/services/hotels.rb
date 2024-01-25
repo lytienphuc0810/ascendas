@@ -4,14 +4,11 @@ module Web
   module Services
     class Hotels
       def list(hotels, destination)
-        Hanami.logger.debug(hotels)
-        Hanami.logger.debug(destination)
-
         @body1 = JSON.parse(Faraday.get(ENV['URL_SOURCE_1']).body)
         @body2 = JSON.parse(Faraday.get(ENV['URL_SOURCE_2']).body)
         @body3 = JSON.parse(Faraday.get(ENV['URL_SOURCE_3']).body)
 
-        build_hotels(hotels, destination).map { |h| Hanami::Utils::Hash.deep_serialize(h) }
+        build_hotels(hotels, destination)
       end
 
       private

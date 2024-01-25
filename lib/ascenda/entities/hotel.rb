@@ -1,5 +1,3 @@
-require 'hanami/model'
-
 # frozen_string_literal: true
 
 module Entities
@@ -36,8 +34,6 @@ module Entities
   end
 
   class Hotel < Hanami::Entity
-    attr_accessor :id, :name, :destination_id
-
     attributes do
       attribute :id, Types::Strict::String
       attribute :destination_id, Types::String
