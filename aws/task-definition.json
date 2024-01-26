@@ -1,6 +1,7 @@
 {
-   "containerDefinitions": [ 
+   "containerDefinitions": [
       { 
+        "name": "ascenda-container",
          "entryPoint": [
             "bundle",
             "exec",
