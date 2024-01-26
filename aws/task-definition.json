@@ -36,5 +36,6 @@
     },
    "requiresCompatibilities": [ 
        "FARGATE" 
-    ]
+    ],
+   "executionRoleArn": "arn:aws:iam::943071292150:role/ecsTaskExecutionRole"
 }
