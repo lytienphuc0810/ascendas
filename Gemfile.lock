@@ -67,7 +67,10 @@ GEM
     faraday (2.7.10)
       faraday-net_http (>= 2.0, < 3.1)
       ruby2_keywords (>= 0.0.4)
+    faraday-http-cache (2.5.1)
+      faraday (>= 0.8)
     faraday-net_http (3.0.2)
+    filecache (1.0.3)
     hanami (1.3.5)
       bundler (>= 1.6, < 3)
       concurrent-ruby (~> 1.0)
@@ -240,6 +243,8 @@ DEPENDENCIES
   capybara
   dotenv (~> 2.4)
   faraday
+  faraday-http-cache
+  filecache
   hanami (~> 1.3)
   hanami-model (~> 1.3)
   hanami-webconsole

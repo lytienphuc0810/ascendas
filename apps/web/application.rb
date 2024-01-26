@@ -1,5 +1,8 @@
 # frozen_string_literal: true
 
+require_relative './utils/cache'
+# frozen_string_literal: true
+
 # rubocop:disable Metrics/BlockLength
 require 'hanami/helpers'
 require 'hanami/assets'
@@ -334,6 +337,11 @@ module Web
         primary_coverage :branch
       end
       SimpleCov.coverage_dir '.coverage'
+    end
+
+    Faraday.default_connection = Faraday.new do |conn|
+      conn.use Faraday::HttpCache, store: Cache.new
+      conn.adapter Faraday.default_adapter
     end
   end
 end

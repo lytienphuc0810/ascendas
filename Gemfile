@@ -7,6 +7,8 @@ gem 'hanami-model', '~> 1.3'
 gem 'rake'
 
 gem 'faraday'
+gem 'faraday-http-cache'
+gem 'filecache'
 gem 'sqlite3'
 
 gem 'rubocop', require: false
