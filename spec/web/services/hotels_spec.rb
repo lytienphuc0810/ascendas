@@ -1,5 +1,8 @@
 # frozen_string_literal: true
 
+# rubocop:disable Layout/LineLength
+# rubocop:disable Metrics/BlockLength
+
 require_relative '../../../apps/web/services/hotels'
 
 RSpec.describe Web::Services::Hotels do
@@ -211,3 +214,6 @@ RSpec.describe Web::Services::Hotels do
     end
   end
 end
+
+# rubocop:enable Layout/LineLength
+# rubocop:enable Metrics/BlockLength

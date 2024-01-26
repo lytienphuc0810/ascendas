@@ -8,32 +8,34 @@ module Web
         @body2 = JSON.parse(Faraday.get(ENV['URL_SOURCE_2']).body)
         @body3 = JSON.parse(Faraday.get(ENV['URL_SOURCE_3']).body)
 
-        build_hotels(hotels, destination)
+        build_hotels(hotels || [], destination)
       end
 
       private
 
       def filter_hotel(hotel_id, destination_id, filter_hotel_ids, filter_destination_id)
-        (filter_hotel_ids.nil? or filter_hotel_ids.include? hotel_id) and (filter_destination_id.nil? or destination_id == filter_destination_id.to_i)
+        valid = (filter_hotel_ids.nil? or filter_hotel_ids.include? hotel_id)
+        (valid and (filter_destination_id.nil? or destination_id == filter_destination_id.to_i))
       end
 
-      def build_hotels(hotel_ids = [], destination)
+      def build_hotels(hotel_ids, destination)
         sources1 = @body1.select { |o| filter_hotel(o['Id'], o['DestinationId'], hotel_ids, destination) }
         sources2 = @body2.select { |o| filter_hotel(o['hotel_id'], o['destination_id'], hotel_ids, destination) }
         sources3 = @body3.select { |o| filter_hotel(o['id'], o['destination'], hotel_ids, destination) }
 
+        get_hotel_ids(sources1, sources2, sources3).map do |hotel_id|
+          aggregate_hotel_sources(sources1.find { |o| o['Id'] == hotel_id },
+                                  sources2.find { |o| o['hotel_id'] == hotel_id },
+                                  sources3.find { |o| o['id'] == hotel_id })
+        end.compact
+      end
+
+      def get_hotel_ids(sources1, sources2, sources3)
         filtered_ids = []
         filtered_ids += sources1.map { |o| o['Id'] }
         filtered_ids += sources2.map { |o| o['hotel_id'] }
         filtered_ids += sources3.map { |o| o['id'] }
-
-        filtered_ids.uniq.map do |hotel_id|
-          source1 = sources1.find { |o| o['Id'] == hotel_id }
-          source2 = sources2.find { |o| o['hotel_id'] == hotel_id }
-          source3 = sources3.find { |o| o['id'] == hotel_id }
-
-          aggregate_hotel_sources(source1, source2, source3)
-        end.compact
+        filtered_ids.uniq
       end
 
       def nilify(val)
