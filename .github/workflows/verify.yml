@@ -20,13 +20,9 @@ jobs:
         run: |
           yarn install --pure-lockfile
 
-      - name: Bundle
-        run: |
-          bundle
-
       - name: Run linters
         run: |
-          bin/rubocop --parallel
+          bundle exec rubocop
 
   tests:
     name: Tests
@@ -45,9 +41,5 @@ jobs:
         run: |
           yarn install --pure-lockfile
 
-      - name: Bundle
-        run: |
-          bundle
-
       - name: Run tests
-        run: bin/rspec
+        run: bundle exec rspec
