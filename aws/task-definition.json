@@ -18,7 +18,6 @@
                "awslogs-stream-prefix": "ecs"
             }
          },
-         "name": "ascenda-app",
          "portMappings": [ 
             { 
                "containerPort": 2300,
