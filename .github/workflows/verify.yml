@@ -22,12 +22,12 @@ jobs:
 
       - name: Run linters
         run: |
-          bin/rubocop --parallel
+          rubocop --parallel
 
       - name: Run security checks
         run: |
-          bin/bundler-audit --update
-          bin/brakeman -q -w2
+          bundler-audit --update
+          brakeman -q -w2
 
   tests:
     name: Tests
@@ -47,4 +47,4 @@ jobs:
           yarn install --pure-lockfile
 
       - name: Run tests
-        run: bin/rspec
+        run: rspec
