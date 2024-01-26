@@ -1,0 +1,40 @@
+{
+   "containerDefinitions": [ 
+      { 
+         "entryPoint": [
+            "bundle",
+            "exec",
+            "hanami",
+            "server",
+            "--host=0.0.0.0",
+         ],
+         "essential": true,
+         "logConfiguration": { 
+            "logDriver": "awslogs",
+            "options": { 
+               "awslogs-group" : "/ecs/fargate-task-definition",
+               "awslogs-region": "ap-southeast-1",
+               "awslogs-stream-prefix": "ecs"
+            }
+         },
+         "name": "ascenda-app",
+         "portMappings": [ 
+            { 
+               "containerPort": 2300,
+               "hostPort": 80,
+               "protocol": "tcp"
+            }
+         ]
+      }
+   ],
+   "cpu": "256",
+   "family": "fargate-task-definition",
+   "memory": "512",
+   "networkMode": "awsvpc",
+   "runtimePlatform": {
+        "operatingSystemFamily": "LINUX"
+    },
+   "requiresCompatibilities": [ 
+       "FARGATE" 
+    ]
+}
