@@ -32,7 +32,8 @@
 	2. Have a rule/mapper engine with ability for configuration instead of hard coding the mapping/aggeration data logic
 
 # Test Coverage
-	![alt text](https://github.com/lytienphuc0810/ascenda/blob/main/coverage.png?raw=true)
+	<img width="1435" alt="coverage" src="https://github.com/lytienphuc0810/ascendas/assets/1932296/02acfa6e-1257-4d61-b44b-487be0d697c2">
+
 
 # Test Pipeline & Sample Deployment
 	1. Checkout my github action for linter & rspec at
