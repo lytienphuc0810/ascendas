@@ -1,20 +1,15 @@
 name: Build and Deploy
+
 on:
   push:
     branches:
-      - feature/github-deploy
-# on:
-#   push:
-#     branches:
-#       - main
+      - main
 
 # env:
 #   ENV: ##region##
 
-
 jobs:
   deploy:
-    needs: build
     runs-on: ubuntu-latest
     environment: development
     permissions:
