@@ -1,5 +1,7 @@
 # frozen_string_literal: true
 
+# rubocop:disable Metrics/BlockLength
+
 require_relative '../../../apps/web/controllers/hotels/index'
 
 RSpec.describe Web::Controllers::Hotels::Index do
@@ -37,3 +39,5 @@ RSpec.describe Web::Controllers::Hotels::Index do
     expect(response[2][0]).to eq(JSON.generate({ hotels: [hotel.to_h] }))
   end
 end
+
+# rubocop:enable Metrics/BlockLength

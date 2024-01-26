@@ -1,5 +1,6 @@
 # frozen_string_literal: true
 
+# rubocop:disable Metrics/BlockLength
 require 'hanami/helpers'
 require 'hanami/assets'
 
@@ -336,3 +337,4 @@ module Web
     end
   end
 end
+# rubocop:enable Metrics/BlockLength
