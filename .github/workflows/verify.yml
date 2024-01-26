@@ -13,13 +13,16 @@ jobs:
 
       - name: Setup Ruby and install gems
         uses: ruby/setup-ruby@v1
-        run: gem install rubocop
         with:
           bundler-cache: true
 
       - name: Install packages
         run: |
           yarn install --pure-lockfile
+
+      - name: Bundle
+        run: |
+          bundle
 
       - name: Run linters
         run: |
@@ -46,6 +49,10 @@ jobs:
       - name: Install packages
         run: |
           yarn install --pure-lockfile
+
+      - name: Bundle
+        run: |
+          bundle
 
       - name: Run tests
         run: rspec
