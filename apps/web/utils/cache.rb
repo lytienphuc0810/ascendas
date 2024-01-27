@@ -3,7 +3,6 @@
 class Cache
   FILECACHE = FileCache.new('filecache', '/tmp/caches', 30, 1)
   def read(key)
-    print FILECACHE.get(key)
     FILECACHE.get(key)
   end
 
