@@ -29,7 +29,7 @@
    ],
    "cpu": "256",
    "family": "fargate-task-definition",
-   "memory": "512",
+   "memory": "1024",
    "networkMode": "awsvpc",
    "runtimePlatform": {
         "operatingSystemFamily": "LINUX"
