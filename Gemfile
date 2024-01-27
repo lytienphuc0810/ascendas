@@ -6,10 +6,10 @@ gem 'hanami', '~> 1.3'
 gem 'hanami-model', '~> 1.3'
 gem 'rake'
 
-gem 'faraday', '~> 2.9'
-gem 'faraday-http-cache', '~> 2.5', '>= 2.5.1'
-gem 'filecache', '~> 1.0', '>= 1.0.3'
-gem 'sqlite3'
+gem 'faraday'
+gem 'faraday-http-cache'
+gem 'filecache'
+gem 'sqlite3', '~> 1.3.6'
 
 gem 'rubocop', require: false
 

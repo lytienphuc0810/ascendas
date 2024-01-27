@@ -6,3 +6,4 @@
 
 # docker run --mount type=bind,source=/Users/phucly/Workspace/ascenda,target=/usr/src/app -it --entrypoint /bin/bash my-ruby-app 
 .coverage
+.filecache/*
