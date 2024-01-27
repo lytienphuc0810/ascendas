@@ -9,8 +9,8 @@
 	http://localhost:2300/hotels?hotels[]=SjyX&hotels[]=f8c9
 	http://localhost:2300/hotels?destination=5432
 	or you can use a hosted ECS:
-	http://ec2-54-169-44-192.ap-southeast-1.compute.amazonaws.com:2300/hotels?hotels[]=iJhz
-	http://ec2-54-169-44-192.ap-southeast-1.compute.amazonaws.com:2300/hotels?destination=5432
+	http://ec2-13-214-194-137.ap-southeast-1.compute.amazonaws.com:2300/hotels?hotels[]=iJhz
+	http://ec2-13-214-194-137.ap-southeast-1.compute.amazonaws.com:2300/hotels?destination=5432
 
 # Decisions on data cleaning & selecting the best data
 
@@ -39,5 +39,5 @@
 	https://github.com/lytienphuc0810/ascendas/actions/workflows/verify.yml
 	2. Checkout my github action for AWS ECS deployment at
 	https://github.com/lytienphuc0810/ascendas/actions/workflows/deploy.yml
-	Hosted instance can be accessed at http://ec2-54-169-44-192.ap-southeast-1.compute.amazonaws.com:2300
+	Hosted instance can be accessed at http://ec2-13-214-194-137.ap-southeast-1.compute.amazonaws.com:2300
 
