@@ -14,7 +14,7 @@ module Web
       private
 
       def filter_hotel(hotel_id, destination_id, filter_hotel_ids, filter_destination_id)
-        valid = (filter_hotel_ids.nil? or filter_hotel_ids.include? hotel_id)
+        valid = (filter_hotel_ids.empty? or filter_hotel_ids.include? hotel_id)
         (valid and (filter_destination_id.nil? or destination_id == filter_destination_id.to_i))
       end
 
